@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [carModels, setCarModels] = useState([]);
+  const navigate = useNavigate();
+
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedModel, setSelectedModel] = useState('');
@@ -89,7 +92,7 @@ const Products = () => {
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {products.length > 0 ? (
           products.map(product => (
-            <div key={product.id} className="border rounded-xl shadow-md p-4 bg-white">
+            <div key={product.id}   onClick={() => navigate(`/products/${product.id}`)} className="border cursor-pointer rounded-xl shadow-md p-4 bg-white">
               <img
                 src={product.image?.url}
                 alt={product.title}
